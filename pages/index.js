@@ -87,9 +87,10 @@ export async function getStaticProps() {
   const res = await fetch(`${process.env.APP_HOST}/api/getMyCourses`);
   if (res.status === 200) {
     let { data } = await res.json();
+    
     return {
       props: {
-        myCoursesData: data,
+        myCoursesData: data[0],
       },
     };
   } else {

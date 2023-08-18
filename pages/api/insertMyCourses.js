@@ -1,6 +1,5 @@
 import dbConnection from "../../components/db/dbConnection";
 
-const connection = dbConnection();
 const whereExpression = "(?, ?, ?, ?, ?)";
 
 async function handler(req, res) {
@@ -19,6 +18,7 @@ async function handler(req, res) {
   baseQuery = baseQuery.slice(0, -1);
 
   try {
+    const connection = await dbConnection();
     await connection.query(baseQuery, paramsList);
     await connection.end();
     return res.status(201).json();

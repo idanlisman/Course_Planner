@@ -142,7 +142,7 @@ function MyCoursesTable(props) {
 
   function getDataToSave(outDatedData) {
     const newData = props.tableData;
-    const deleteCourses = compareAndGetChanges(outDatedData, newData);
+    const deleteCourses = compareAndGetChanges(outDatedData, newData)[0];
     const addCourses = compareAndGetChanges(newData, outDatedData);
     let promises = [];
 
