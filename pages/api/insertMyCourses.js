@@ -23,7 +23,7 @@ async function handler(req, res) {
     await connection.end();
     return res.status(201).json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(500).json({ err });
   }
 }

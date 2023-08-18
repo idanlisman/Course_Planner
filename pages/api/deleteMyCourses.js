@@ -14,14 +14,12 @@ async function handler(req, res) {
   baseQuery = baseQuery.slice(0, -4);
 
   try {
-    console.log(baseQuery);
-    console.log(paramsList);
     const connection = await dbConnection();
     await connection.query(baseQuery, paramsList);
     await connection.end();
     return res.status(201).json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res.status(500).json({ err });
   }
 }

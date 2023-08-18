@@ -120,7 +120,7 @@ function MyCoursesTable(props) {
         setTemporaryChanges([]);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 
