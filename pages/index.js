@@ -16,7 +16,9 @@ function Home({ myCoursesData }) {
   };
   const [inputsValue, setInputsValue] = useState(clearInputs);
   const [emptyInput, setEmptyInput] = useState([]);
-  const [tableData, setTableData] = useState(myCoursesData);
+
+  // useState(myCoursesData)
+  const [tableData, setTableData] = useState([]);
   const [lastAddedCourse, setLastAddedCourse] = useState(null);
 
   function getInputsValue(name, value) {
@@ -83,20 +85,20 @@ function Home({ myCoursesData }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`${process.env.APP_HOST}/api/getMyCourses`);
-  if (res.status === 200) {
-    let { data } = await res.json();
+// export async function getStaticProps() {
+//   const res = await fetch(`${process.env.APP_HOST}/api/getMyCourses`);
+//   if (res.status === 200) {
+//     let { data } = await res.json();
     
-    return {
-      props: {
-        myCoursesData: data[0],
-      },
-    };
-  } else {
-    const { err } = await res.json();
-    throw err;
-  }
-}
+//     return {
+//       props: {
+//         myCoursesData: data[0],
+//       },
+//     };
+//   } else {
+//     const { err } = await res.json();
+//     throw err;
+//   }
+// }
 
 export default Home;

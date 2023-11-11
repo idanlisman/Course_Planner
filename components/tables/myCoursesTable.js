@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { uuidGenerator, numberOfYears, numberOfSemesters } from '.././utils';
 import Button from "../layouts/Button";
 import Style from "./tablesStyle.module.css";
+import { v4 as uuid } from "uuid";
 
 function MyCoursesTable(props) {
   const [tableData, setTableData] = useState([]);
@@ -231,7 +232,7 @@ function MyCoursesTable(props) {
             <tr>
               <th>Year</th>
               {tableData.map((year) => (
-                <th className={Style.table__yearTitle} colSpan={numberOfSemesters}>
+                <th key={uuid()} className={Style.table__yearTitle} colSpan={numberOfSemesters}>
                   {year.yearName}
                 </th>
               ))}
@@ -242,7 +243,7 @@ function MyCoursesTable(props) {
               <th>Semester</th>
               {tableData.map((year) =>
                 year.semesters.map((semester) => (
-                  <th className={Style.table__semesterTitle}>
+                  <th key={uuid()} className={Style.table__semesterTitle}>
                     {semester.semesterName}
                   </th>
                 ))
@@ -252,10 +253,11 @@ function MyCoursesTable(props) {
               <th>Courses</th>
               {tableData.map((year) =>
                 year.semesters.map((semester) => (
-                  <td>
-                    <ul>
+                  <td key={uuid()}>
+                    <ul key={uuid()}>
                       {semester.courses.map((course) => (
                         <li
+                          key={uuid()}
                           id={course.UUID}
                           onClick={onCourseClickHandler}
                           className={`${Style.table__courses_list} ${Style[getCourseCellStyle(course)]} ${Style[courseStyle(course.UUID)]}`}
